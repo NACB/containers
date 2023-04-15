@@ -1,8 +1,8 @@
 
-################################################################################
+################################################
 # example fibonacci number code;
 # you do not have to modify this code in any way
-################################################################################
+################################################
 
 
 def fibs(n):
@@ -46,10 +46,10 @@ def fib(n):
     return f2
 
 
-################################################################################
+###############################################
 # fibonacci number code using generators;
 # you will need to implement the functions below
-################################################################################
+###############################################
 
 
 class Fib:
@@ -61,15 +61,68 @@ class Fib:
     [1, 1, 2, 3, 5]
     '''
 
+    def __init__(self, n=None):
+        self.n = n
+
+    def __iter__(self):
+        return FibIter(self.n)
+
+    def __repr__(self):
+        if self.n is not None:
+            return f'Fib({self.n})'
+        else:
+            return 'Fib()'
+
 
 class FibIter:
     '''
     This is the iterator helper class for the Fib class.
     '''
 
+    def __init__(self, n):
+        self.n = n
+        self.i = 0
+        self.f0 = 1
+        self.f1 = 1
+        self.f2 = None
+
+    def __next__(self):
+        if self.n is not None and self.n <= self.i:
+            raise StopIteration
+        elif self.i < 2:
+            self.i += 1
+            return 1
+        else:
+            self.i += 1
+            self.f2 = self.f0 + self.f1
+            self.f0 = self.f1
+            self.f1 = self.f2
+            return self.f2
+
 
 def fib_yield(n=None):
     '''
-    This function returns a generator that computes the first n fibonacci numbers.
+    This function returns a generator that computes the
+    first n fibonacci numbers.
     If n is None, then the generator is infinite.
     '''
+
+    f0 = 1
+    f1 = 1
+    if n is not None:
+        for i in range(n):
+            if i < 2:
+                yield 1
+            else:
+                f2 = f1 + f0
+                f0 = f1
+                f1 = f2
+                yield f2
+    else:
+        yield 1
+        yield 1
+        while True:
+            f2 = f1 + f0
+            f0 = f1
+            f1 = f2
+            yield f2

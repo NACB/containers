@@ -78,8 +78,10 @@ class BinaryTree():
         elif traversal_type == 'postorder':
             return self.postorder_print(self.root, '')
         else:
-            raise ValueError('Traversal type ' + str(traversal_type) +
-                             ' is not supported.')
+            a = 'Traversal type'
+            b = ' is not supported.'
+            # because I couldn't get a line break past the linter
+            raise ValueError(a + str(traversal_type) + b)
 
     def preorder_print(self, start, traversal):
         '''
@@ -139,8 +141,10 @@ class BinaryTree():
         if traversal_type == 'postorder':
             return self.postorder(self.root, [])
         else:
-            raise ValueError('Traversal type ' + str(traversal_type) +
-                             ' is not supported.')
+            a = 'Traversal type'
+            b = ' is not supported.'
+            # because I couldn't get a line break past the linter
+            raise ValueError(a + str(traversal_type) + b)
 
     def preorder(self, start, traversal):
         '''

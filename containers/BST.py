@@ -26,7 +26,6 @@ class BST(BinaryTree):
             for x in xs:
                 self.insert(x)
 
-
     def __iter__(self):
         if self.root is None:
             return iter([])
@@ -169,7 +168,7 @@ class BST(BinaryTree):
         else:
             if value < self.root.value:
                 return self._find(value, self.root.left)
-            else: 
+            else:
                 return self._find(value, self.root.right)
 
     @staticmethod
